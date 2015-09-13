@@ -3,4 +3,12 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string-array name="continents">
+        <item name="af">Africa</item>
+        <item name="as">Asia</item>
+        <item name="eu">Europe</item>
+        <item name="na">North America</item>
+        <item name="oc">Oceania</item>
+        <item name="sa">South America</item>
+    </string-array>
 </resources>

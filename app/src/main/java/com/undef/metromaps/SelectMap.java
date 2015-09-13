@@ -4,13 +4,32 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ExpandableListAdapter;
+import android.widget.ExpandableListView;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class SelectMap extends AppCompatActivity {
+
+    ExpandableListView mapSelectorView;
+    ExpandableListAdapter mapSelectorAdapter;
+    List<String> continents;
+    Map<String, List<String>> countries;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_map);
+
+        mapSelectorView = (ExpandableListView) findViewById(R.id.expandableListView);
+        prepareData();
+        mapSelectorAdapter = new MapSelectAdaptor(this, continents, countries);
+
+        mapSelectorView.setAdapter(mapSelectorAdapter);
     }
 
     @Override
@@ -33,5 +52,19 @@ public class SelectMap extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void prepareData() {
+        continents = new ArrayList<>();
+        countries = new HashMap<>();
+
+        continents.addAll(Arrays.asList(getResources().getStringArray(R.array.continents)));
+
+        countries.put("Asia", new ArrayList<String>());
+        countries.put("Africa", new ArrayList<String>());
+        countries.put("Australia", new ArrayList<String>());
+        countries.put("North America", new ArrayList<String>());
+        countries.put("South America", new ArrayList<String>());
+        countries.put("Europe", new ArrayList<String>());
     }
 }
